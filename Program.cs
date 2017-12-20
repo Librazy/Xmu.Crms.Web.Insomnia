@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xmu.Crms.Web.Group1
+namespace Xmu.Crms.Web.Insomnia
 {
     public class Program
     {

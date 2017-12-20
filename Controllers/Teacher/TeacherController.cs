@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Xmu.Crms.Web.Group1.Controllers.Teacher
+namespace Xmu.Crms.Web.Insomnia.Controllers.Teacher
 {
     [Route("")]
     public class TeacherController : Controller

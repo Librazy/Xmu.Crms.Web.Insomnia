@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Xmu.Crms.Web.Group1.Controllers.Student
+namespace Xmu.Crms.Web.Insomnia.Controllers.Student
 {
     [Route("")]
     public class StudentController : Controller

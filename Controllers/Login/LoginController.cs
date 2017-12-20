@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Xmu.Crms.Web.Group1.Controllers.Login
+namespace Xmu.Crms.Web.Insomnia.Controllers.Login
 {
     [Route("")]
     public class LoginController : Controller
