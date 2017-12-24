@@ -58,6 +58,7 @@
 <script async src="~/js/tether.min.js"></script>
 <script defer src="~/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
     var course = getQuery()["id"];
     $(function () {
@@ -70,6 +71,7 @@
             url: '/class/' + id + "/classgroup",
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 for (var i = result.length; i--;) {
                     if (i % 2) {

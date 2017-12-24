@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>教师主页</title>
     <link href="~/css/teacher/TeacherCourseHomePage.css" rel="stylesheet" type="text/css"/>
-    <link href="~/css/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/css/vendor/bootstrap.4.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="top">
@@ -77,11 +77,13 @@
 <script async src="~/js/tether.min.js"></script>
 <script defer src="~/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     $(function() {
         $.ajax({
             url: '/course',
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 for (var i = result.length; i--;) {
                     $("#courses").after(

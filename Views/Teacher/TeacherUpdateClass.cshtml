@@ -76,6 +76,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
     var course = getQuery()["course"];
     $(function() {
@@ -89,6 +90,7 @@
             url: '/class/' + id,
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 $("#name").val(result.name);
                 $("#time").val(result.time);
@@ -110,6 +112,7 @@
                 type: 'PUT',
                 contentType: 'application/json',
                 dataType: 'json',
+                headers: {"Authorization": "Bearer " + token},
                 data: JSON.stringify({
                     name: $("#name").val(),
                     time: $("#time").val(),

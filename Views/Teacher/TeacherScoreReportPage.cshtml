@@ -82,6 +82,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script>
+    var token = window.localStorage.getItem("jwt");
     var query = getQuery();
     var course = query["course"];
     var seminar = query["seminar"];
@@ -95,6 +96,7 @@
             url: '/group/' + id,
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 $(".pdfFile").attr("src", result.report);
                 $("#name").text(result.name);
@@ -108,6 +110,7 @@
                 type: 'PUT',
                 dataType: 'json',
                 contentType: 'application/json',
+                headers: {"Authorization": "Bearer " + token},
                 data: JSON.stringify({ reportGrade: $("#score").val() }),
                 success: function() {
                     window.location.href = "/Teacher/Seminar/Score?id=" + seminar + "&course=" + course;

@@ -70,14 +70,16 @@
             contentType: 'application/json',
             data: JSON.stringify({ phone: $("#phoneNum").val(), password: $("#password").val() }),
             dataType: 'json',
-            success: function(result) {
+            success: function (result) {
+                window.localStorage.setItem('jwt', result.jwt);
                 $.ajax({
                     url: '/me',
                     type: 'PUT',
                     contentType: 'application/json',
+                    headers: {"Authorization": "Bearer " + result.jwt},
                     data: JSON.stringify({
                         name: $("#name").val(),
-                        school: { id: $("#school").val() },
+                        school: { id: 1 }, //TODO
                         gender: $('input[name=gender]:checked').val(),
                         type: $('input[name=role]:checked').val(),
                         number: $("#stuffNum").val(),
@@ -85,8 +87,7 @@
                     }),
                     dataType: 'json',
                     success: function() {
-                        window.localStorage.setItem('jwt', result.jwt);
-                        if (result.type === "student") {
+                        if ($('input[name=role]:checked').val().type === "student") {
                             window.location.href = "/Student/";
                         } else {
                             window.location.href = "/Teacher/";

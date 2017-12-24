@@ -80,6 +80,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var course = getQuery()["course"];
     $(function() {
         if (window.localStorage.getItem("course" + course)) {
@@ -95,6 +96,7 @@
                 type: 'POST',
                 contentType: 'application/json',
                 dataType: 'json',
+                headers: {"Authorization": "Bearer " + token},
                 data: JSON.stringify({
                     name: $("#name").val(),
                     description: $("#description").val(),

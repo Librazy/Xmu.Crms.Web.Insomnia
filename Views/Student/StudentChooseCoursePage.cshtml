@@ -47,12 +47,15 @@
 <script async src="~/js/tether.min.js"></script>
 <script defer src="~/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
+
     $(function() {
         //本json中，由于numStudent是通过service层对用户统计得来的，因此统计数据通过常数展示在这里
         $.ajax({
             url: '/class',
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 for (var i = result.length; i--;) {
                     $("#insertinfo").after(

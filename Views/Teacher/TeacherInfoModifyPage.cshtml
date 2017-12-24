@@ -46,7 +46,8 @@
                     <tr class="itemName">
                         <td>姓名：<input type="text" name="name" id="name"/></td>
                         <td>
-                            性别：<select name="gender">
+                            性别：
+                            <select name="gender">
                                 <option value="male">男</option><option value="female">女</option>
                             </select>
                         </td>
@@ -79,12 +80,15 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
+
     $(function() {
         $("form").attr("action", window.location.href);
         $.ajax({
             url: '/me',
             type: 'GET',
             dataType: 'json',
+            headers: { "Authorization": "Bearer " + token },
             success: function(result) {
                 $("#phone").val(result.phone);
                 $("#name").val(result.name);
@@ -104,6 +108,7 @@
                 type: 'PUT',
                 contentType: 'application/json',
                 dataType: 'json',
+                headers: { "Authorization": "Bearer " + token },
                 data: JSON.stringify({
                     name: $("#name").val(),
                     school: { id: $("#school").val() },
@@ -113,7 +118,7 @@
                     email: $("#email").val()
                 }),
                 success: function() {
-                    window.location.href = '/TeacherHomePage';
+                    window.location.href = '/Teacher';
                 }
             });
         });

@@ -63,6 +63,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     $(function() {
         $("#submit").click(function(e) {
             e.preventDefault();
@@ -71,6 +72,7 @@
                 type: 'POST',
                 contentType: 'application/json',
                 dataType: 'json',
+                headers: {"Authorization": "Bearer " + token},
                 data: JSON.stringify({
                     name: $("#name").val(),
                     description: $("#description").val(),

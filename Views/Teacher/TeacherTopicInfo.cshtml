@@ -62,6 +62,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
     var course = getQuery()["course"];
     var seminar = getQuery()["seminar"];
@@ -75,6 +76,7 @@
             url: '/topic/' + id,
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 $("#name").text(result.name);
                 $("#description").text(result.description);
@@ -86,6 +88,7 @@
             url: '/topic/' + id + '/group',
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 for (var i = result.length; i--;) {
                     $("#groups").prepend("<li>" + result[i].name + "</li>");
@@ -100,6 +103,7 @@
                 $.ajax({
                     url: '/topic/' + id,
                     type: 'DELETE',
+                    headers: {"Authorization": "Bearer " + token},
                     success: function() {
                         window.location.href = "/Teacher/Seminar?id=" + seminar;
                     }

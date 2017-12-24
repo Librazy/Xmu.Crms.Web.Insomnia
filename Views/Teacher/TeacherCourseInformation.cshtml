@@ -51,12 +51,14 @@
 <script async src="~/js/tether.min.js"></script>
 <script defer src="~/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
     $(function() {
         $.ajax({
             url: '/course/' + id,
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 window.localStorage.setItem("course" + id, JSON.stringify(result));
                 $(".courseName").text(result.name);
@@ -67,6 +69,7 @@
             url: '/course/' + id + "/class",
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 for (var i = result.length; i--;) {
                     $("#classes").prepend("<div class=\"block classblock\" data-class-id=" +

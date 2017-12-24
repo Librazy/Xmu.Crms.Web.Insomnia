@@ -20,9 +20,9 @@
     <PackageReference Update="Microsoft.NETCore.App" Version="2.0.3" />
   </ItemGroup>
   
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="gulp" />
-  </Target>
+  </Target>-->
   
   <Target Name="CopyDepsFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
     <ItemGroup>

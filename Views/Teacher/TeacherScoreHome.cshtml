@@ -56,6 +56,7 @@
 <script src="~/js/query.js"></script>
 <script src="~/js/jquery.min.js"></script>
 <script type="text/javascript">
+    var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
     var course = getQuery()["course"];
     var groups = [];
@@ -115,6 +116,7 @@
             url: '/seminar/' + id + '/group',
             type: 'GET',
             dataType: 'json',
+            headers: {"Authorization": "Bearer " + token},
             success: function(result) {
                 groups = result;
                 remain = groups.length;
