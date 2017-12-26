@@ -83,7 +83,7 @@
             url: '/seminar/' + id,
             type: 'GET',
             dataType: 'json',
-            headers: {"Authorization": "Bearer " + token},
+            headers: { "Authorization": "Bearer " + token },
             success: function(result) {
                 $("#name").text(result.name);
                 $("#description").text(result.description);
@@ -91,11 +91,20 @@
                 $("#startTime").text(result.startTime);
                 $("#endTime").text(result.endTime);
                 window.localStorage.setItem("seminar" + id, JSON.stringify(result));
-                for (var i = result.topics.length; i--;) {
+            }
+        });
+        $.ajax({
+            url: '/seminar/' + id + '/topic',
+            type: 'GET',
+            dataType: 'json',
+            headers: { "Authorization": "Bearer " + token },
+            success: function(result) {
+
+                for (var i = result.length; i--;) {
                     $(".topicBlockBody").prepend("<div class=\"topicBlock\" data-topic-id=\"" +
-                        result.topics[i].id +
+                        result[i].id +
                         "\"><div class=\"topicBlockFont\">" +
-                        result.topics[i].name +
+                        result[i].name +
                         "</div></div>");
                 }
                 $(".topicBlock").click(function() {

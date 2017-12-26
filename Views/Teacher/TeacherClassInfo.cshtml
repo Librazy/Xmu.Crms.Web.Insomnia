@@ -121,6 +121,7 @@
                 $.ajax({
                     url: '/class/' + id,
                     type: 'DELETE',
+                    headers: {"Authorization": "Bearer " + token},
                     success: function() {
                         window.location.href = "/Teacher/Course/Courseinfo?id=" + course;
                     }

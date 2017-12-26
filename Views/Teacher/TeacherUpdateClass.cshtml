@@ -118,15 +118,15 @@
                     time: $("#time").val(),
                     site: $("#site").val(),
                     proportions: {
-                        presentation: $("#presentation").valueOf(),
-                        report: $("#report").valueOf(),
-                        c: $("#c").valueOf(),
-                        b: $("#b").valueOf(),
-                        a: $("#a").valueOf()
+                        presentation: $("#presentation").val(),
+                        report: $("#report").val(),
+                        c: $("#c").val(),
+                        b: $("#b").val(),
+                        a: $("#a").val()
                     }
                 }),
                 success: function() {
-                    window.location.href = '/Teacher/Class?id=' + id;
+                    window.location.href = '/Teacher/Class?id=' + id + '&course=' + course;
                 }
             });
         });
