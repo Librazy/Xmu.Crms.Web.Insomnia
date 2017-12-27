@@ -82,7 +82,9 @@
                     name: $("#name").val(),
                     description: $("#description").val(),
                     groupMemberLimit: $("#groupMemberLimit").val(),
-                    groupLimit: $("#groupLimit").val()
+                    groupStudentLimit: $("#groupMemberLimit").val(),
+                    groupLimit: $("#groupLimit").val(),
+                    groupNumberLimit: $("#groupLimit").val()
                 }),
                 success: function(result) {
                     window.location.href = '/Teacher/Topic?id=' + result.id + "&course=" + course;

@@ -72,7 +72,7 @@
                 "</td><td>" +
                 groups[i].leader.name +
                 "</td><td>" +
-                $.map(groups[i].grade.presentationGrades, function(g) { return g.grade }).join(", ") +
+                $.map(groups[i].grade.presentationGrade, function(g) { return g.grade }).join(", ") +
                 "</td><td>" +
                 (hasReport ? "已提交" : "未提交") +
                 "</td><td>" +
@@ -122,9 +122,10 @@
                 remain = groups.length;
                 for (var i = groups.length; i--;) {
                     $.ajax({
-                        url: '/group/' + groups[i].id,
+                        url: '/group/' + groups[i].id + '?embedGrade=true',
                         type: 'GET',
                         dataType: 'json',
+                        headers: {"Authorization": "Bearer " + token},
                         success: groupCallBack(i)
                     });
                 }

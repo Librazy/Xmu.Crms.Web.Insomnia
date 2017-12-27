@@ -60,7 +60,7 @@
 <script type="text/javascript">
     var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
-    var course = getQuery()["id"];
+    var course = getQuery()["course"];
     $(function () {
         if (window.localStorage.getItem("course" + course)) {
             var c = JSON.parse(window.localStorage.getItem("course" + course));
@@ -73,44 +73,44 @@
             dataType: 'json',
             headers: {"Authorization": "Bearer " + token},
             success: function(result) {
-                for (var i = result.length; i--;) {
+                for (var i = result.members.length; i--;) {
                     if (i % 2) {
-                        if (result[i].isLeader) {
+                        if (result.members[i].id === result.leader.id) {
                             $("#insertinfo").after(
                                 "<tr class=\"alt\"><td>队长</td><td>" +
-                                result[i].number +
+                                result.members[i].number +
                                 "</td>" +
                                 "<td>" +
-                                result[i].name +
+                                result.members[i].name +
                                 "</td>" +
                                 "<td></td></tr>");
                         } else {
                             $("#insertinfo").after(
                                 "<tr class=\"alt\"><td>队员</td><td>" +
-                                result[i].number +
+                                result.members[i].number +
                                 "</td>" +
                                 "<td>" +
-                                result[i].name +
+                                result.members[i].name +
                                 "</td>" +
                                 "</tr>");
                         }
                     } else {
-                        if (result[i].isLeader) {
+                        if (result.members[i].id === result.leader.id) {
                             $("#insertinfo").after(
                                 "<tr><td>队长</td><td>" +
-                                result[i].number +
+                                result.members[i].number +
                                 "</td>" +
                                 "<td>" +
-                                result[i].name +
+                                result.members[i].name +
                                 "</td>" +
                                 "<td></td></tr>");
                         } else {
                             $("#insertinfo").after(
                                 "<tr><td>队员</td><td>" +
-                                result[i].number +
+                                result.members[i].number +
                                 "</td>" +
                                 "<td>" +
-                                result[i].name +
+                                result.members[i].name +
                                 "</td>" +
                                 "</tr>");
                         }
@@ -133,7 +133,7 @@
         window.location.href = "/Login";
     });
     $("#returnpage").click(function() {
-        window.location.href = "/Student/Course/Courseinfo?id=" + course;
+        window.location.href = "/Student/Course/Courseinfo?id=" + id + "&course=" + course;
     });
 </script>
 </body>

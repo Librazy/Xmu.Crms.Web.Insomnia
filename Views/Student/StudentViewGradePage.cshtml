@@ -56,6 +56,10 @@
 <script type="text/javascript">
     var token = window.localStorage.getItem("jwt");
     var id = getQuery()["id"];
+    var course = getQuery()["course"];
+    var cls = getQuery()["class"];
+
+
     $(function () {
         if (window.localStorage.getItem("course" + course)) {
             var c = JSON.parse(window.localStorage.getItem("course" + course));
@@ -72,7 +76,7 @@
                     if (i % 2) {
                         $("#insertinfo").after(
                             "<tr><td>" +
-                            result[i].id +
+                            result[i].seminarName +
                             "</td>" +
                             "<td>" +
                             result[i].groupName +
@@ -81,19 +85,19 @@
                             result[i].leaderName +
                             "</td>" +
                             "<td>" +
-                            result[i].presentationGrade +
+                            (result[i].presentationGrade ? result[i].presentationGrade : "暂无")+
                             "</td>" +
                             "<td>" +
-                            result[i].reportGrade +
+                            (result[i].reportGrade ? result[i].reportGrade : "暂无") +
                             "</td>" +
                             "<td>" +
-                            result[i].finalGrade +
+                            (result[i].finalGrade ? result[i].grade : "暂无") +
                             "</td></tr>"
                         );
                     } else {
                         $("#insertinfo").after(
                             "<tr class=\"alt\"><td>" +
-                            result[i].id +
+                            result[i].seminarName +
                             "</td>" +
                             "<td>" +
                             result[i].groupName +
@@ -102,13 +106,13 @@
                             result[i].leaderName +
                             "</td>" +
                             "<td>" +
-                            result[i].presentationGrade +
+                            (result[i].presentationGrade ? result[i].presentationGrade : "暂无")+
                             "</td>" +
                             "<td>" +
-                            result[i].reportGrade +
+                            (result[i].reportGrade ? result[i].reportGrade : "暂无") +
                             "</td>" +
                             "<td>" +
-                            result[i].finalGrade +
+                            (result[i].finalGrade ? result[i].grade : "暂无") +
                             "</td></tr>"
                         );
                     }
@@ -124,6 +128,9 @@
     });
     $("#skipexit").click(function() {
         window.location.href = "/Login";
+    });
+    $(".returnButton").click(function() {
+        window.location.back(-1);
     });
 </script>
 </body>

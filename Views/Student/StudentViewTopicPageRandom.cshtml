@@ -29,7 +29,7 @@
     </div>
     <div class="content">
         <div class="block">
-            <div class="title">话题A</div>
+            <div class="title">话题</div>
             <div class="returnButton" id="returnpage">返回上一页</div>
             <div class="line" id="insertinfo"></div>
 
@@ -46,6 +46,7 @@
     var id = getQuery()["id"];
     var course = getQuery()["course"];
     var seminar = getQuery()["seminar"];
+    var cls = getQuery()["class"];
     $(function () {
         if (window.localStorage.getItem("course" + course)) {
             var c = JSON.parse(window.localStorage.getItem("course" + course));
@@ -94,7 +95,7 @@
         window.location.href = "/Login";
     });
     $("#returnpage").click(function() {
-        window.location.href = "/Student/Seminar/Random?id=" + id;
+        window.location.href = "/Student/Seminar/Random?id=" + seminar + "&course=" + course + "&class=" + cls;
     });
 </script>
 </body>

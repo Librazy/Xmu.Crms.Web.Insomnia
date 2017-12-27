@@ -5,12 +5,6 @@ namespace Xmu.Crms.Web.Insomnia.Controllers.Login
     [Route("")]
     public class LoginController : Controller
     {
-        [Route("/")]
-        public IActionResult HomePage()
-        {
-            return Redirect("/Login");
-        }
-
         [Route("/Login")]
         public IActionResult AccountLoginPage()
         {

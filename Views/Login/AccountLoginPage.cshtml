@@ -43,6 +43,7 @@
             dataType: 'json',
             success: function(result) {
                 window.localStorage.setItem('jwt', result.jwt);
+                window.localStorage.setItem('id', result.id);
                 if (result.type === "student") {
                     window.location.href = "/Student/";
                 } else {
